@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Deck } from './deck';
+import { Card } from './card';
 
 @Component({
   selector: 'app-root',
@@ -7,4 +9,14 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'app';
+  deck = new Deck(false);
+  cards = new Array<Card>();
+
+  dealCard() {
+    this.cards = this.cards.concat(this.deck.deal(1));
+  }
+
+  constructor() {
+    this.deck.shuffle();
+  }
 }
